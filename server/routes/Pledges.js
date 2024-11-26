@@ -40,9 +40,9 @@ router.post("/create", async (req, res) => {
     pledge_id: id,
     pledge_username: "Harry",
     pledge_location: req.body.pledge_location,
-    pledge_status: 'Open',
+    pledge_status: "Open",
     pledge_item: req.body.pledge_item,
-    pledge_item_quant: req.body.pledge_quant
+    pledge_item_quant: req.body.pledge_quant,
   });
   res.json("SUCCESS");
 });
@@ -51,6 +51,5 @@ router.delete("/:id", async (req, res) => {
   const pledge = await pledges.destroy({ where: { pledge_id: req.params.id } });
   res.json(pledge);
 });
-
 
 module.exports = router;

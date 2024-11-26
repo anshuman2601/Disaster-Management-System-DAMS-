@@ -65,7 +65,7 @@ function Recipient() {
     });
   }, [requests]);
 
-let deleteRequest = async (id) => {
+  let deleteRequest = async (id) => {
     await axios.delete(`http://localhost:3001/requests/${id}`);
     loadRequests();
   };
@@ -104,63 +104,49 @@ let deleteRequest = async (id) => {
         </TableContainer>
       </Grid>
 
-    <Grid container spacing={-2} component={Paper}>
-            <TableContainer align="center" component={Paper}>
-                <Typography variant="h4">Requests</Typography>
-                <Button variant="contained" onClick={() => navigate("/createrequest")}>
-                    Add Request
-                </Button>
-                <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>ID</TableCell>
-                            <TableCell align="right">User</TableCell>
-                            <TableCell align="right">Disaster</TableCell>
-                            <TableCell align="right">Location</TableCell>
-                            <TableCell align="right">Date Requested</TableCell>
-                            <TableCell align="center">Expiration</TableCell>
-                            <TableCell align="center">Item</TableCell>
-                            <TableCell align="center">Quantity</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {requests.map((request, index) => (
-                            <TableRow key={request.id}>
-                                <TableCell component="th" scope="row">
-                                    {request.request_id}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {request.request_username}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {disasterNames[request.request_id]}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {disasterLocations[request.request_id]}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {request.request_date}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {request.request_expiration}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {request.request_item}
-                                </TableCell>
-                                <TableCell align="right">
-                                    {request.request_item_quant}
-                                </TableCell>
-                                <TableCell align="center">
-                                    <Button variant="contained" onClick={() => deleteRequest(request.request_id)}>
-                                        Archive
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-    </Grid>
+      <Grid container spacing={-2} component={Paper}>
+        <TableContainer align="center" component={Paper}>
+          <Typography variant="h4">Requests</Typography>
+          <Button variant="contained" onClick={() => navigate("/createrequest")}>
+            Add Request
+          </Button>
+          <Table sx={{ minWidth: 150 }} aria-label="data table" stickyHeader>
+            <TableHead>
+              <TableRow>
+                <TableCell>ID</TableCell>
+                <TableCell align="right">User</TableCell>
+                <TableCell align="right">Disaster</TableCell>
+                <TableCell align="right">Location</TableCell>
+                <TableCell align="right">Date Requested</TableCell>
+                <TableCell align="center">Expiration</TableCell>
+                <TableCell align="center">Item</TableCell>
+                <TableCell align="center">Quantity</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {requests.map((request, index) => (
+                <TableRow key={request.id}>
+                  <TableCell component="th" scope="row">
+                    {request.request_id}
+                  </TableCell>
+                  <TableCell align="right">{request.request_username}</TableCell>
+                  <TableCell align="right">{disasterNames[request.request_id]}</TableCell>
+                  <TableCell align="right">{disasterLocations[request.request_id]}</TableCell>
+                  <TableCell align="right">{request.request_date}</TableCell>
+                  <TableCell align="right">{request.request_expiration}</TableCell>
+                  <TableCell align="right">{request.request_item}</TableCell>
+                  <TableCell align="right">{request.request_item_quant}</TableCell>
+                  <TableCell align="center">
+                    <Button variant="contained" onClick={() => deleteRequest(request.request_id)}>
+                      Archive
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
 
       <Map />
     </Box>
